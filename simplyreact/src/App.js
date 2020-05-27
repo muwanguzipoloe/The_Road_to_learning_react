@@ -25,9 +25,16 @@ class App extends Component {
     const helloWorld = 'This is the Road to learn React';
     return (
       <div className="App">
-        {list.map(function (item) {
-          return(
-/* Make sure that the key attribute is a stable identifier. 
+{
+/*
+  You can also write map functions more concisely with 
+  an ES6 arrow function:
+*/
+}
+        {list.map(item => 
+          
+/* 
+   Make sure that the key attribute is a stable identifier. 
    Avoid using the index of the item in the array, because the array 
    index is not stable. If the list changes its order, for example, 
    React will not be able to identify the items properly.
@@ -40,8 +47,7 @@ class App extends Component {
               <span>{item.num_comments}, </span>
               <span>{item.points}</span>
             </div>
-          ) 
-        })}
+        )}
       </div> );
 } }
 export default App;
