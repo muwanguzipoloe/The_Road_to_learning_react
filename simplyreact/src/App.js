@@ -27,6 +27,31 @@ class App extends Component {
     this.state = {
       list,
     };
+/*
+    In order to define the onDismiss() as class 
+    method, you have to bind it in the constructor:
+*/
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+/* 
+    Defining the method so that it may be usable.
+    the objective is to remove the item identified 
+    by the id from the list and store an updated 
+    list to the local state. (Using JS built-in filter)
+*/
+  onDismiss(id) {
+    const isNotID = item => item.objectID !== id;
+    const updatedList = this.state.list.filter(isNotID);
+
+/*
+    Alternative to the above:
+      onDismiss(id) {
+        const updatedList = this.state.list.filter(item => item.objectID !== id);
+      }
+*/
+//  Use the setState() class method to update the list in the local component state:
+
+    this.setState({ list: updatedList });
   }
   render() {
     const helloWorld = 'This is the Road to learning React';
@@ -55,7 +80,15 @@ class App extends Component {
               </span>
               <span>{item.author} </span>
               <span>{item.num_comments}, </span>
-              <span>{item.points}</span>
+              <span>{item.points} </span>
+              <span>
+                <button 
+                  onClick={() => this.onDismiss(item.objectID)}
+                  type="button"
+                >
+                  Dismiss
+                </button>
+              </span>
             </div>
         )}
       </div> );
