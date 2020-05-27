@@ -22,7 +22,7 @@ const list = [
 
 class App extends Component {
   render() {
-    const helloWorld = 'This is the Road to learn React';
+    const helloWorld = 'This is the Road to learning React';
     return (
       <div className="App">
 {
@@ -30,7 +30,10 @@ class App extends Component {
   You can also write map functions more concisely with 
   an ES6 arrow function:
 */
-}
+}       
+        <div>{helloWorld}</div>
+        <br / >
+
         {list.map(item => 
           
 /* 
