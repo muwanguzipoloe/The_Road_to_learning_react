@@ -21,6 +21,13 @@ const list = [
 ];
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: list,
+    };
+  }
   render() {
     const helloWorld = 'This is the Road to learning React';
     return (
@@ -34,7 +41,7 @@ class App extends Component {
         <div>{helloWorld}</div>
         <br / >
 
-        {list.map(item => 
+        {this.state.list.map(item => 
           
 /* 
    Make sure that the key attribute is a stable identifier. 
