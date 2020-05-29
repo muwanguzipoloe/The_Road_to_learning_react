@@ -82,7 +82,16 @@ class App extends Component {
               <span>{item.num_comments}, </span>
               <span>{item.points} </span>
               <span>
+                
                 <button 
+                
+                  /*It is not advisable to use arrow functinos in 
+                   event handlers like below, it affects performance
+                   if there's so many of such event handlers.
+                   it would be better to impliment a separate
+                   button component for optimization.  
+                  */
+                
                   onClick={() => this.onDismiss(item.objectID)}
                   type="button"
                 >
