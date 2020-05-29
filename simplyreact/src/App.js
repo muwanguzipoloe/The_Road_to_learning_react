@@ -104,8 +104,9 @@ class App extends Component {
             />
           </form>
           {this.state.list.filter(isSearched(this.state.searchTerm)).map(item =>
-          
+
           )}
+          
         <br/>
 
         {this.state.list.map(item => 
