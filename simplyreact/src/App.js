@@ -19,6 +19,23 @@ const list = [
     objectID: 1,
   },
 ];
+// Define Higher order function outside App component:
+// The function takes the searchTerm and returns another function
+// function isSearched(searchTerm) {
+//   return function (item) {
+/*
+      The condition matches the incoming searchTerm pattern with the 
+      title property of the item from your list. You can do that with 
+      the built-in includes JavaScript functionality. When the pattern 
+      matches, it returns true and the item stays in the list; when 
+      the pattern doesn’t match, the item is removed from the list.
+*/
+//     return item.title.toLowerCase().includes(searchTerm.toLowerCase());
+//   }
+// }
+// Alternative to above function, using ES6 Arrow functions and .include():
+const isSearched = searchTerm => item =>
+  item.title.toLowerCase().includes(searchTerm.toLowerCase());
 
 class App extends Component {
 
@@ -26,12 +43,14 @@ class App extends Component {
     super(props);
     this.state = {
       list,
+      searchTerm: '',
     };
 /*
     In order to define the onDismiss() as class 
     method, you have to bind it in the constructor:
 */
     this.onDismiss = this.onDismiss.bind(this);
+    this.onSearchChange = this.onSearchChange.bind(this);
   }
 /* 
     Defining the method so that it may be usable.
@@ -42,17 +61,29 @@ class App extends Component {
   onDismiss(id) {
     const isNotID = item => item.objectID !== id;
     const updatedList = this.state.list.filter(isNotID);
-
-/*
-    Alternative to the above:
-      onDismiss(id) {
-        const updatedList = this.state.list.filter(item => item.objectID !== id);
-      }
-*/
-//  Use the setState() class method to update the list in the local component state:
+        /*
+            Alternative to the above:
+              onDismiss(id) {
+                const updatedList = this.state.list.filter(item => item.objectID !== id);
+              }
+        */
+        //  Use the setState() class method to update the list in the local component state:
 
     this.setState({ list: updatedList });
   }
+/* 
+      When using a handler in your element, you get access to the 
+      synthetic React event in your callback function’s signature.
+*/
+  onSearchChange(event) {
+       /*
+       The event has the value of the input field in its target object, 
+       so you can update the local state with a search term 
+       using this.setState(). 
+       */
+    this.setState({ searchTerm: event.target.value });
+  }
+
   render() {
     const helloWorld = 'This is the Road to learning React';
     return (
@@ -63,8 +94,19 @@ class App extends Component {
   an ES6 arrow function:
 */
 }       
+        <br/>
         <div>{helloWorld}</div>
         <br / >
+          <form>
+            <input 
+            type="text"
+            onChange={this.onSearchChange}
+            />
+          </form>
+          {this.state.list.filter(isSearched(this.state.searchTerm)).map(item =>
+          
+          )}
+        <br/>
 
         {this.state.list.map(item => 
           
@@ -82,7 +124,7 @@ class App extends Component {
               <span>{item.num_comments}, </span>
               <span>{item.points} </span>
               <span>
-                
+
                 <button 
                 
                   /*It is not advisable to use arrow functinos in 
