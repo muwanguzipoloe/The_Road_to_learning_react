@@ -104,7 +104,11 @@ class App extends Component {
             />
           </form>
           {this.state.list.filter(isSearched(this.state.searchTerm)).map(item =>
-
+            <div key={item.objectID}>
+              <span>
+          <a href={item.url}>{item.title}</a>
+              </span>
+            </div>
           )}
           
         <br/>
