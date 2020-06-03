@@ -65,11 +65,12 @@ class App extends Component {
     );
   }
 }
+// Using functional component instead of class.
+// Using function signature to destructure the props:
+// Using an arrow function makes it easier because it adds an
+// implicit return is attached, which replaces the return statement.
 
-class Search extends Component {
-  render() {
-    const { value, onChange, children } = this.props;
-    return (
+const Search = ({ value, onChange, children }) => 
       <form>
         {children} 
         <input
@@ -78,14 +79,11 @@ class Search extends Component {
           onChange={onChange}
         />
       </form>
-    );
-  }
-}
+  
 
-class Table extends Component {
-  render() {
-    const { list, pattern, onDismiss } = this.props;
-    return (
+
+const Table = ({ list, pattern, onDismiss }) =>  
+    
       <div>
         {list.filter(isSearched(pattern)).map(item =>
           <div key={item.objectID}>
@@ -106,18 +104,11 @@ class Table extends Component {
           </div>
         )}
       </div>
-    );
-  }
-}
+  
 
-class Button extends Component {
-  render() {
-    const {
-      onClick,
-      className = '',
-      children,
-    } = this.props;
 
+const Button = ({ onClick, className = '', children }) => {
+   
     return (
       <button
         onClick={onClick}
@@ -127,6 +118,6 @@ class Button extends Component {
         {children}
       </button>
     );
-  }
+  
 }
 export default App;
