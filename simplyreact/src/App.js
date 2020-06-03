@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './index.css';
 
 const list = [
   {
@@ -49,13 +50,15 @@ class App extends Component {
   render() {
     const { searchTerm, list } = this.state;
     return (
-      <div className="App">
+      <div className="page">
+        <div className="interactions">
         <Search
           value={searchTerm}
           onChange={this.onSearchChange}
         >
           Search
         </Search>
+        </div>
         <Table
           list={list}
           pattern={searchTerm}
@@ -82,21 +85,30 @@ const Search = ({ value, onChange, children }) =>
   
 
 
-const Table = ({ list, pattern, onDismiss }) =>  
-    
-      <div>
+const Table = ({ list, pattern, onDismiss }) =>  {
+    const largeColumn = { width: '40%',
+    };
+    const midColumn = { width: '30%',
+    };
+    const smallColumn = { width: '10%',
+    };
+    return(
+      <div className="table">
         {list.filter(isSearched(pattern)).map(item =>
-          <div key={item.objectID}>
-            <span>
+          <div key={item.objectID} className="table-row">
+            <span style={ largeColumn }>
               <a href={item.url}>{item.title}</a>
             </span>
-            <span>{item.author}</span>
-            <span>{item.num_comments}</span>
-            <span>{item.points}</span>
-            <span>
+            <span style={ midColumn }>
+              {item.author}</span>
+            <span style={  smallColumn }>
+              {item.num_comments}</span>
+            <span style={  smallColumn }>
+              {item.points}</span>
+            <span style={  smallColumn }>
               <Button
                 onClick={() => onDismiss(item.objectID)}
-                type="button"
+                className="button-inline"
               >
                 Dismiss
               </Button>
@@ -105,11 +117,10 @@ const Table = ({ list, pattern, onDismiss }) =>
         )}
       </div>
   
+      )  }
 
-
-const Button = ({ onClick, className = '', children }) => {
+const Button = ({ onClick, className = '', children }) => 
    
-    return (
       <button
         onClick={onClick}
         className={className}
@@ -117,7 +128,6 @@ const Button = ({ onClick, className = '', children }) => {
       >
         {children}
       </button>
-    );
-  
-}
+    
+
 export default App;
