@@ -22,4 +22,16 @@ describe('App', ()=> {
     ReactDOM.render(<App />, div); 
     ReactDOM.unmountComponentAtNode(div);
   });
-})
+
+
+// implimenting fist snapshot test by using a "test"-block
+
+  test('has a valid snapshot', () => {
+    const component = renderer.create(
+      <App/>
+    );
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+});
