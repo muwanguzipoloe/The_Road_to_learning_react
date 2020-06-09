@@ -10,10 +10,16 @@
 
 import React from 'react'; 
 import ReactDOM from 'react-dom'; 
+// this import enables us to extend app component test with snapshot test.
+import renderer from 'react-test-renderer'
 import App from './App';
 
-it('renders without crashing', () => { 
-  const div = document.createElement('div'); 
-  ReactDOM.render(<App />, div); 
-  ReactDOM.unmountComponentAtNode(div);
-});
+// extending app component test with snaphot test 
+
+describe('App', ()=> {
+  it('renders without crashing', () => { 
+    const div = document.createElement('div'); 
+    ReactDOM.render(<App />, div); 
+    ReactDOM.unmountComponentAtNode(div);
+  });
+})
