@@ -12,7 +12,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'; 
 // this import enables us to extend app component test with snapshot test.
 import renderer from 'react-test-renderer'
-import App from './App';
+import App, { Search } from './App';
 
 // extending app component test with snaphot test 
 
@@ -34,4 +34,19 @@ describe('App', ()=> {
     expect(tree).toMatchSnapshot();
   });
 
+});
+
+describe('Search', () => {
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<Search>Search</Search>, div);
+    ReactDOM.unmountComponentAtNode(div);
+});
+  test('has a valid snapshot', () => {
+    const component = renderer.create(
+      <Search>Search</Search>
+    );
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });
