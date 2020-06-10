@@ -183,7 +183,31 @@ class Search extends Component  {
     );
   }
 }
+// The above can be archieved in a functional / stateless component like bellow:
+/*
+const Search = ({
+  value,
+  onChange,
+  onSubmit,
+  children
+}) => {
+  let input;
+  return (
+    <form onSubmit={onSubmit}>
+      <input
+      type="text"
+      value={value} 
+      onChange={onChange} 
+      ref={el => this.input = el}
+      />
+      <button type="submit">
+        {children}
+      </button>
+    </form> 
+  );
+}
 
+*/
 const Table = ({ list, onDismiss }) =>
   <div className="table">
     {list.map(item =>
