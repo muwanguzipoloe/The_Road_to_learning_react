@@ -167,6 +167,7 @@ class Search extends Component  {
           type="text"
           value={value}
           onChange={onChange}
+          ref={el => this.input = el}
         />
         <button type="submit">
           {children}
