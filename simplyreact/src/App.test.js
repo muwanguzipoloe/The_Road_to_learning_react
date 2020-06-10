@@ -12,8 +12,15 @@ import React from 'react';
 import ReactDOM from 'react-dom'; 
 // this import enables us to extend app component test with snapshot test.
 import renderer from 'react-test-renderer'
+// imports for enzyme:
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
 import App, { Search, Button, Table } from './App';
 
+Enzyme.configure(
+  { adapter: new Adapter() }
+);
 // extending app component test with snaphot test 
 
 describe('App', ()=> {
