@@ -153,7 +153,7 @@ class App extends Component {
 }
 
 class Search extends Component  {
-  //this auto focuses on the input/search as soon as the page loads
+  //this auto focuses on the input/search as soon as the application renders
   componentDidMount() {
     if (this.input) {
       this.input.focus();
