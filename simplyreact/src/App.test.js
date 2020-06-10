@@ -13,7 +13,7 @@ import ReactDOM from 'react-dom';
 // this import enables us to extend app component test with snapshot test.
 import renderer from 'react-test-renderer'
 // imports for enzyme:
-import Enzyme from 'enzyme';
+import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import App, { Search, Button, Table } from './App';
@@ -91,4 +91,12 @@ describe('Table', () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+  it('shows two items in list', () => {
+    const element = shallow(
+      <Table { ...props } />
+    );
+    expect(element.find('.table-row').length).toBe(2);
+  });
+  
 });
