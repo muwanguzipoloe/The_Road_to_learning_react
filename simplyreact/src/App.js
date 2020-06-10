@@ -153,6 +153,12 @@ class App extends Component {
 }
 
 class Search extends Component  {
+  componentDidMount() {
+    if (this.input) {
+      this.input.focus();
+    }
+  }
+  
   render(){
     const {
       value,
