@@ -231,6 +231,15 @@ const Button = ({
 const Loading = () =>
   <div>Loading ...</div>
 
+function withFeature(Component) {
+  return function(props) {
+    return <Component { ...props } />;
+  }
+}
+
+const withEnhancement = (Component) => (props) =>
+  <Component { ...props } />
+
 export default App;
 
 export {
