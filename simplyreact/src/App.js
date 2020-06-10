@@ -152,62 +152,23 @@ class App extends Component {
   }
 }
 
-class Search extends Component  {
-  //this auto focuses on the input/search as soon as the application renders
-  componentDidMount() {
-    if (this.input) {
-      this.input.focus();
-    }
-  }
-
-  render(){
-    const {
-      value,
-      onChange,
-      onSubmit,
-      children
-    } = this.props;
-
-    return (
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          value={value}
-          onChange={onChange}
-          ref={el => this.input = el}
-        />
-        <button type="submit">
-          {children}
-        </button>
-      </form>
-    );
-  }
-}
-// The above can be archieved in a functional / stateless component like bellow:
-/*
 const Search = ({
   value,
   onChange,
   onSubmit,
   children
-}) => {
-  let input;
-  return (
-    <form onSubmit={onSubmit}>
-      <input
+}) =>
+  <form onSubmit={onSubmit}>
+    <input
       type="text"
-      value={value} 
-      onChange={onChange} 
-      ref={el => this.input = el}
-      />
-      <button type="submit">
-        {children}
-      </button>
-    </form> 
-  );
-}
+      value={value}
+      onChange={onChange}
+    />
+    <button type="submit">
+      {children}
+    </button>
+  </form>
 
-*/
 const Table = ({ list, onDismiss }) =>
   <div className="table">
     {list.map(item =>
