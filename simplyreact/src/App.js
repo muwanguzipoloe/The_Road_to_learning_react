@@ -242,6 +242,11 @@ const withEnhancement = (Component) => (props) =>
 
 export default App;
 
+const withLoading = (Component) => (props) =>
+  props.isLoading
+    ? <Loading />
+    : <Component { ...props } />
+    
 export {
   Button,
   Search,
