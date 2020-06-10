@@ -74,7 +74,7 @@ class App extends Component {
 
     axios(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`)
       .then(result => this.setSearchTopStories(result.data))
-      .catch(error => error);
+      .catch(error => this.setState({ error }));
   }
 
   componentDidMount() {
@@ -118,6 +118,7 @@ class App extends Component {
       searchTerm,
       results,
       searchKey,
+      error,
       isLoading
     } = this.state;
 
@@ -144,17 +145,23 @@ class App extends Component {
             Search
           </Search>
         </div>
-        <Table
-          list={list}
-          onDismiss={this.onDismiss}
-        />
+        { error
+          ? <div className="interactions">
+            <p>Something went wrong.</p>
+          </div>
+          : <Table
+            list={list}
+            onDismiss={this.onDismiss}
+          />
+        }
         <div className="interactions">
           { isLoading
             ? <Loading />
-
-            : <Button onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}>
-                More
-              </Button>
+            : <Button
+                onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
+              >
+              More
+            </Button>
           }
         </div>
       </div>
@@ -222,7 +229,7 @@ const Button = ({
   </button>
 
 const Loading = () =>
-  <div> Loading ... </div>
+  <div>Loading ...</div>
 
 export default App;
 
