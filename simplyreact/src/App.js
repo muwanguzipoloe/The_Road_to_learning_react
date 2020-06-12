@@ -231,6 +231,7 @@ const Button = ({
 const Loading = () =>
   <div>Loading ...</div>
 
+
 function withFeature(Component) {
   return function(props) {
     return <Component { ...props } />;
@@ -246,6 +247,8 @@ const withLoading = (Component) => ( {isLoading, ...rest} ) =>
   isLoading
     ? <Loading />
     : <Component { ...rest } />
+
+const ButtonWithLoading = withLoading(Button);
     
 export {
   Button,
