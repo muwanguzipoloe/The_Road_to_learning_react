@@ -209,6 +209,35 @@ const Table = ({
   onDismiss 
 }) =>
   <div className="table">
+    <div className="table-header">
+      <span style={{ width: '40%' }}>
+        <sort
+          sortKey={'TITLE'}
+          onSort={onSort}
+        >
+          Title
+        </sort>
+      </span>
+      <span style={{ width: '30%' }}>
+        <sort
+          sortKey={'AUTHOR'}
+          onSort={onSort}
+        >
+          Author
+        </sort>  
+      </span>
+      <span style={{ width: '10%' }}>
+        <sort
+          sortKey={'COMMENTS'}
+          onSort={onSort}
+        >
+          Points
+        </sort>
+      </span>
+      <span style={{ width: '10%' }}>
+        Archive
+      </span>
+    </div>
     {SORTS[sortKey](list).map(item =>
       <div key={item.objectID} className="table-row">
         <span style={largeColumn}>
