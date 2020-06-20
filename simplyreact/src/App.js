@@ -42,6 +42,7 @@ class App extends Component {
       searchTerm: DEFAULT_QUERY,
       error: null,
       isLoading: false,
+      sortKey: 'NONE',
     };
 
     this.needsToSearchTopStories = this.needsToSearchTopStories.bind(this);
@@ -50,6 +51,11 @@ class App extends Component {
     this.onSearchChange = this.onSearchChange.bind(this);
     this.onSearchSubmit = this.onSearchSubmit.bind(this);
     this.onDismiss = this.onDismiss.bind(this);
+    this.onSort = this.onSort.bind(this);
+  }
+
+  onSort(sortKey) {
+    this.setState({ sortKey });
   }
 
   needsToSearchTopStories(searchTerm) {
@@ -128,7 +134,8 @@ class App extends Component {
       results,
       searchKey,
       error,
-      isLoading
+      isLoading,
+      sortKey
     } = this.state;
 
     const page = (
@@ -160,6 +167,8 @@ class App extends Component {
           </div>
           : <Table
             list={list}
+            sortKey={sortKey}
+            onSort={this.onSort}
             onDismiss={this.onDismiss}
           />
         }
@@ -193,9 +202,14 @@ const Search = ({
     </button>
   </form>
 
-const Table = ({ list, onDismiss }) =>
+const Table = ({ 
+  list,
+  sortKey,
+  onSort, 
+  onDismiss 
+}) =>
   <div className="table">
-    {list.map(item =>
+    {SORTS[sortKey](list).map(item =>
       <div key={item.objectID} className="table-row">
         <span style={largeColumn}>
           <a href={item.url}>{item.title}</a>
