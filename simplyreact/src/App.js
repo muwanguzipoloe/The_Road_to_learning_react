@@ -224,6 +224,7 @@ const Table = ({
         <sort
           sortKey={'TITLE'}
           onSort={onSort}
+          activeSortKey={sortKey}
         >
           Title
         </sort>
@@ -238,11 +239,21 @@ const Table = ({
       </span>
       <span style={{ width: '10%' }}>
         <sort
-          sortKey={'COMMENTS'}
+          sortKey={'AUTHOR'}
           onSort={onSort}
+          activeSortKey={sortKey}
+        >
+          Author
+        </sort>
+      </span>
+      <span style={{ width: '10%' }}>
+        <Sort
+          sortkey={'POINTS'}
+          onSort={onSort}
+          activeSortKey={sortKey}
         >
           Points
-        </sort>
+        </Sort>
       </span>
       <span style={{ width: '10%' }}>
         Archive
