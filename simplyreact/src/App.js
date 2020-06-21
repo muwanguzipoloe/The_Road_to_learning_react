@@ -207,13 +207,16 @@ const Search = ({
     </button>
   </form>
 
-const Table = ({
-  list,
-  sortKey,
-  isSortReverse,
-  onSort,
-  onDismiss
-}) => {
+class Table extends Component {
+  render() {
+    const {
+      list,
+      sortKey,
+      isSortReverse,
+      onSort,
+      onDismiss
+    } = this.props;
+
   const sortedList = SORTS[sortKey](list);
   const reverseSortedList = isSortReverse
     ? sortedList.reverse()
@@ -288,6 +291,7 @@ const Table = ({
       )}
     </div>
   );
+}
 }
 
 const Sort = ({
